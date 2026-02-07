@@ -5,6 +5,7 @@ import pool from './config/db.js';
 
 import userRoutes from './routes/userRoutes.js';
 import errorHandlingFunction from './middlewares/errorHandler.js';
+import createUserTable from './data/createUserTable.js';
 
 dotenv.config();
 
@@ -20,6 +21,9 @@ app.use('/api', userRoutes);
 
 // Error handling middleware
 app.use(errorHandlingFunction);
+
+// Create users table if it doesn't exist
+createUserTable()
 
 //Testing database connection
 app.get('/', async (req, res) => {
